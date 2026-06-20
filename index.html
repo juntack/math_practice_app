@@ -46,7 +46,7 @@
           <p class="problem" id="problem" aria-label="もんだい"></p>
 
           <label class="answer-label" for="answer">こたえ</label>
-          <input id="answer" inputmode="numeric" autocomplete="off" maxlength="2" aria-describedby="feedback" />
+          <input id="answer" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="2" aria-describedby="feedback" />
           <button id="check-button" class="check-button" type="button" disabled>はんていする（N）</button>
           <p id="feedback" class="feedback" aria-live="assertive"></p>
           <button id="next-button" type="button" hidden>つぎの もんだい</button>
