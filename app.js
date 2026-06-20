@@ -22,6 +22,7 @@ let startedAt = 0;
 let isTimingEnabled = true;
 let availableQuestions = [];
 let lastQuestionKey = null;
+let audioContext = null;
 
 function randomInt(max) {
   return Math.floor(Math.random() * (max + 1));
@@ -88,6 +89,49 @@ function makeQuestion() {
   problemElement.textContent = `${nextQuestion.left} ${nextQuestion.operation} ${nextQuestion.right} ＝`;
 }
 
+function getAudioContext() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return null;
+  if (!audioContext) audioContext = new AudioContextClass();
+  return audioContext;
+}
+
+function playTone(context, frequency, startTime, duration, type) {
+  const oscillator = context.createOscillator();
+  const gain = context.createGain();
+  oscillator.type = type;
+  oscillator.frequency.setValueAtTime(frequency, startTime);
+  gain.gain.setValueAtTime(0.001, startTime);
+  gain.gain.exponentialRampToValueAtTime(0.18, startTime + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+  oscillator.connect(gain);
+  gain.connect(context.destination);
+  oscillator.start(startTime);
+  oscillator.stop(startTime + duration + 0.02);
+}
+
+function playResultSound(isCorrect) {
+  const context = getAudioContext();
+  if (!context) return;
+
+  const play = () => {
+    const now = context.currentTime;
+    if (isCorrect) {
+      playTone(context, 1046.5, now, 0.12, "sine");
+      playTone(context, 1318.5, now + 0.14, 0.25, "sine");
+    } else {
+      playTone(context, 170, now, 0.2, "sawtooth");
+      playTone(context, 120, now + 0.18, 0.32, "sawtooth");
+    }
+  };
+
+  if (context.state === "suspended") {
+    context.resume().then(play).catch(() => {});
+  } else {
+    play();
+  }
+}
+
 function showResult(isCorrect) {
   answered = true;
   questionCount += 1;
@@ -95,6 +139,7 @@ function showResult(isCorrect) {
 
   feedbackElement.textContent = isCorrect ? "○" : "×";
   feedbackElement.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
+  playResultSound(isCorrect);
   correctCountElement.textContent = correctCount;
   questionCountElement.textContent = questionCount;
   answerInput.disabled = true;
