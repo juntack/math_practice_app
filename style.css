@@ -64,6 +64,11 @@ legend { padding: 0 6px; font-weight: 700; }
 }
 #answer:focus { border-color: #e77745; box-shadow: 0 0 0 4px #ffe2c6; }
 #answer:disabled { background: #f6f8fa; }
+.number-pad { display: grid; grid-template-columns: repeat(3, minmax(52px, 70px)); justify-content: center; gap: 8px; margin: 16px auto 0; }
+.number-pad button { min-height: 48px; padding: 8px; border-radius: 12px; background: #f6f8fa; color: #25324a; box-shadow: 0 3px 0 #dce3e7; font-size: 1.45rem; }
+.number-pad button:active { box-shadow: 0 1px 0 #dce3e7; }
+.number-pad button:disabled { cursor: default; opacity: .5; }
+.number-pad .delete-key { font-size: 1rem; }
 .check-button { display: block; margin: 14px auto 0; background: #2eae88; box-shadow: 0 4px 0 #208064; }
 .check-button:active { box-shadow: 0 1px 0 #208064; }
 .check-button:disabled { cursor: default; opacity: .5; box-shadow: none; }
@@ -77,7 +82,7 @@ button { border: 0; border-radius: 16px; padding: 14px 22px; background: #e77745
 button:active { transform: translateY(3px); box-shadow: 0 1px 0 #bc562d; }
 .hint { color: #637087; font-size: .9rem; }
 
-@media (min-width: 760px) and (min-height: 500px) {
+@media (min-width: 900px) and (min-height: 500px) {
   body { padding: 24px 40px; }
   h1 { margin-bottom: 18px; }
   .dashboard { grid-template-columns: minmax(290px, .75fr) minmax(460px, 1.25fr); align-items: stretch; }
@@ -87,7 +92,8 @@ button:active { transform: translateY(3px); box-shadow: 0 1px 0 #bc562d; }
   .settings { margin: 0; }
   .problem-card { display: flex; flex-direction: column; justify-content: center; min-height: 460px; padding: 30px 42px; }
   .problem { margin: 18px 0 30px; font-size: clamp(4.5rem, 9vw, 6.5rem); }
-  .check-button { display: inline-block; margin: 18px 0 0 14px; vertical-align: top; }
+  .number-pad { margin-top: 18px; }
+  .check-button { margin-top: 18px; }
   .feedback { margin-top: 16px; }
   .hint { margin: 16px 0 0; }
 }

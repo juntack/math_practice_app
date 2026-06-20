@@ -11,6 +11,7 @@ const modeInputs = document.querySelectorAll('input[name="mode"]');
 const questionTotalInput = document.querySelector("#question-total");
 const timeResultElement = document.querySelector("#time-result");
 const timerEnabledInput = document.querySelector("#timer-enabled");
+const numberPadButtons = document.querySelectorAll("#number-pad button");
 
 let answer = 0;
 let correctCount = 0;
@@ -89,6 +90,24 @@ function makeQuestion() {
   problemElement.textContent = `${nextQuestion.left} ${nextQuestion.operation} ${nextQuestion.right} ＝`;
 }
 
+function updateAnswerControls() {
+  const canAnswer = isRunning && !answered;
+  checkButton.disabled = !canAnswer || answerInput.value.length === 0;
+  numberPadButtons.forEach((button) => { button.disabled = !canAnswer; });
+}
+
+function addAnswerDigit(digit) {
+  if (!isRunning || answered || answerInput.value.length >= 2) return;
+  answerInput.value += digit;
+  updateAnswerControls();
+}
+
+function deleteAnswerDigit() {
+  if (!isRunning || answered) return;
+  answerInput.value = answerInput.value.slice(0, -1);
+  updateAnswerControls();
+}
+
 function getAudioContext() {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextClass) return null;
@@ -143,7 +162,7 @@ function showResult(isCorrect) {
   correctCountElement.textContent = correctCount;
   questionCountElement.textContent = questionCount;
   answerInput.disabled = true;
-  checkButton.disabled = true;
+  updateAnswerControls();
 
   if (questionCount === targetQuestionCount) {
     finishPractice();
@@ -171,7 +190,7 @@ function newQuestion() {
   answered = false;
   answerInput.value = "";
   answerInput.disabled = false;
-  checkButton.disabled = true;
+  updateAnswerControls();
   feedbackElement.textContent = "";
   feedbackElement.className = "feedback";
   nextButton.hidden = true;
@@ -188,7 +207,7 @@ function resetScore() {
   questionCountElement.textContent = questionCount;
   answerInput.value = "";
   answerInput.disabled = true;
-  checkButton.disabled = true;
+  updateAnswerControls();
   feedbackElement.textContent = "";
   feedbackElement.className = "feedback";
   nextButton.hidden = true;
@@ -222,8 +241,16 @@ function startPractice() {
 
 answerInput.addEventListener("input", () => {
   answerInput.value = answerInput.value.replace(/[^0-9]/g, "");
-  checkButton.disabled = !isRunning || answered || answerInput.value.length === 0;
+  updateAnswerControls();
 });
+
+numberPadButtons.forEach((button) => button.addEventListener("click", () => {
+  if (button.dataset.action === "delete") {
+    deleteAnswerDigit();
+  } else {
+    addAnswerDigit(button.dataset.digit);
+  }
+}));
 
 checkButton.addEventListener("click", () => {
   if (isRunning && !answered && answerInput.value.length > 0) {
@@ -240,6 +267,18 @@ modeInputs.forEach((input) => input.addEventListener("change", () => {
 startButton.addEventListener("click", startPractice);
 resetButton.addEventListener("click", resetScore);
 document.addEventListener("keydown", (event) => {
+  if (isRunning && !answered && /^[0-9]$/.test(event.key)) {
+    event.preventDefault();
+    addAnswerDigit(event.key);
+    return;
+  }
+
+  if (isRunning && !answered && event.key === "Backspace") {
+    event.preventDefault();
+    deleteAnswerDigit();
+    return;
+  }
+
   if (event.key.toLowerCase() === "n" && isRunning) {
     event.preventDefault();
     if (answered) {
@@ -256,3 +295,4 @@ document.addEventListener("keydown", (event) => {
 prepareQuestionSet();
 makeQuestion();
 answerInput.disabled = true;
+updateAnswerControls();

@@ -46,7 +46,20 @@
           <p class="problem" id="problem" aria-label="もんだい"></p>
 
           <label class="answer-label" for="answer">こたえ</label>
-          <input id="answer" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="2" aria-describedby="feedback" />
+          <input id="answer" type="text" inputmode="none" autocomplete="off" maxlength="2" readonly aria-describedby="feedback" />
+          <div id="number-pad" class="number-pad" aria-label="すうじの ボタン">
+            <button type="button" data-digit="1" disabled>1</button>
+            <button type="button" data-digit="2" disabled>2</button>
+            <button type="button" data-digit="3" disabled>3</button>
+            <button type="button" data-digit="4" disabled>4</button>
+            <button type="button" data-digit="5" disabled>5</button>
+            <button type="button" data-digit="6" disabled>6</button>
+            <button type="button" data-digit="7" disabled>7</button>
+            <button type="button" data-digit="8" disabled>8</button>
+            <button type="button" data-digit="9" disabled>9</button>
+            <button type="button" class="delete-key" data-action="delete" disabled>けす</button>
+            <button type="button" data-digit="0" disabled>0</button>
+          </div>
           <button id="check-button" class="check-button" type="button" disabled>はんていする（N）</button>
           <p id="feedback" class="feedback" aria-live="assertive"></p>
           <button id="next-button" type="button" hidden>つぎの もんだい</button>
@@ -54,7 +67,7 @@
         </section>
       </div>
 
-      <p class="hint">こたえを いれたら N キーで はんてい。もういちど N キーで つぎの もんだい</p>
+      <p class="hint">すうじの ボタンで こたえを いれてね。キーボードでは N キーで はんてい・つぎの もんだい</p>
     </main>
     <script src="app.js"></script>
   </body>
