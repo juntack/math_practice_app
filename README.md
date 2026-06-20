@@ -2,6 +2,8 @@
 
 小学1年生向けの、足し算・引き算の練習用Webアプリです。
 
+公開URL: [https://juntack.github.io/math_practice_app/](https://juntack.github.io/math_practice_app/)
+
 ## 使い方
 
 `index.html` をブラウザで開いてください。インストールは不要です。
