@@ -25,6 +25,7 @@ let isTimingEnabled = true;
 let availableQuestions = [];
 let lastQuestionKey = null;
 let audioContext = null;
+let lastTouchEndAt = 0;
 
 function randomInt(max) {
   return Math.floor(Math.random() * (max + 1));
@@ -295,6 +296,12 @@ document.addEventListener("keydown", (event) => {
 
   if (event.key === "Enter" && isRunning && answered) newQuestion();
 });
+
+document.addEventListener("touchend", (event) => {
+  const now = Date.now();
+  if (now - lastTouchEndAt < 300) event.preventDefault();
+  lastTouchEndAt = now;
+}, { passive: false });
 
 prepareQuestionSet();
 makeQuestion();
