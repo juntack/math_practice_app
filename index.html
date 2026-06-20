@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff7e6" />
+    <title>けいさん れんしゅう</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <header>
+        <p class="eyebrow">まいにち すこしずつ</p>
+        <h1 id="app-title">けいさん れんしゅう</h1>
+      </header>
+
+      <section class="score" aria-label="せいせき">
+        <div><span>せいかい</span><strong id="correct-count">0</strong></div>
+        <div><span>もんだい</span><strong id="question-count">0</strong></div>
+      </section>
+
+      <section class="problem-card" aria-live="polite">
+        <p class="instruction">こたえを いれてね</p>
+        <p class="problem" id="problem" aria-label="もんだい"></p>
+
+        <label class="answer-label" for="answer">こたえ</label>
+        <input id="answer" inputmode="numeric" autocomplete="off" maxlength="1" aria-describedby="feedback" />
+        <p id="feedback" class="feedback" aria-live="assertive"></p>
+        <button id="next-button" type="button" hidden>つぎの もんだい</button>
+      </section>
+
+      <p class="hint">キーボードで すうじを ひとつ いれてね</p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

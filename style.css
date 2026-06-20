@@ -1,0 +1,59 @@
+:root {
+  font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  color: #25324a;
+  background: #fff7e6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 10% 10%, #ffd883 0 8px, transparent 9px),
+    radial-gradient(circle at 90% 18%, #a9e8db 0 12px, transparent 13px),
+    #fff7e6;
+}
+
+.app { width: min(100%, 500px); text-align: center; }
+
+.eyebrow { margin: 0; color: #e77745; font-weight: 700; font-size: .95rem; letter-spacing: .08em; }
+h1 { margin: 6px 0 20px; font-size: clamp(2rem, 7vw, 2.75rem); }
+
+.score { display: flex; justify-content: center; gap: 14px; margin-bottom: 18px; }
+.score div { min-width: 110px; padding: 10px 18px; background: #fff; border-radius: 18px; box-shadow: 0 4px 0 #f0dfba; }
+.score span { display: block; font-size: .8rem; color: #637087; }
+.score strong { font-size: 1.45rem; color: #e77745; }
+
+.problem-card { background: #fff; padding: clamp(24px, 7vw, 42px); border-radius: 30px; box-shadow: 0 12px 0 #f0dfba; }
+.instruction { margin: 0; color: #637087; font-weight: 700; }
+.problem { min-height: 95px; margin: 14px 0 24px; font-size: clamp(4rem, 18vw, 6rem); line-height: 1; font-weight: 800; letter-spacing: .04em; }
+.answer-label { display: block; font-weight: 700; margin-bottom: 8px; }
+
+#answer {
+  width: 104px;
+  height: 86px;
+  text-align: center;
+  font: inherit;
+  font-size: 3.5rem;
+  font-weight: 800;
+  border: 4px solid #86cfc0;
+  border-radius: 18px;
+  color: #25324a;
+  outline: none;
+}
+#answer:focus { border-color: #e77745; box-shadow: 0 0 0 4px #ffe2c6; }
+#answer:disabled { background: #f6f8fa; }
+
+.feedback { height: 76px; margin: 14px 0 0; font-size: 4.5rem; line-height: 1; font-weight: 800; }
+.feedback.correct { color: #2eae88; }
+.feedback.incorrect { color: #eb5d64; }
+
+button { border: 0; border-radius: 16px; padding: 14px 22px; background: #e77745; color: #fff; font: inherit; font-size: 1.1rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 #bc562d; }
+button:active { transform: translateY(3px); box-shadow: 0 1px 0 #bc562d; }
+.hint { color: #637087; font-size: .9rem; }
+
+@media (max-width: 360px) { body { padding: 14px; } .problem-card { border-radius: 24px; } }
