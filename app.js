@@ -12,6 +12,7 @@ const questionTotalInput = document.querySelector("#question-total");
 const timeResultElement = document.querySelector("#time-result");
 const timerEnabledInput = document.querySelector("#timer-enabled");
 const numberPadButtons = document.querySelectorAll("#number-pad button");
+const problemCard = document.querySelector(".problem-card");
 
 let answer = 0;
 let correctCount = 0;
@@ -153,6 +154,7 @@ function playResultSound(isCorrect) {
 
 function showResult(isCorrect) {
   answered = true;
+  problemCard.classList.add("result-shown");
   questionCount += 1;
   if (isCorrect) correctCount += 1;
 
@@ -188,6 +190,7 @@ function finishPractice() {
 
 function newQuestion() {
   answered = false;
+  problemCard.classList.remove("result-shown");
   answerInput.value = "";
   answerInput.disabled = false;
   updateAnswerControls();
@@ -202,6 +205,7 @@ function resetScore() {
   correctCount = 0;
   questionCount = 0;
   answered = false;
+  problemCard.classList.remove("result-shown");
   isRunning = false;
   correctCountElement.textContent = correctCount;
   questionCountElement.textContent = questionCount;
