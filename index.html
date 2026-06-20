@@ -45,22 +45,26 @@
           <p class="instruction">こたえを いれてね</p>
           <p class="problem" id="problem" aria-label="もんだい"></p>
 
-          <label class="answer-label" for="answer">こたえ</label>
-          <input id="answer" type="text" inputmode="none" autocomplete="off" maxlength="2" readonly aria-describedby="feedback" />
-          <div id="number-pad" class="number-pad" aria-label="すうじの ボタン">
-            <button type="button" data-digit="7" disabled>7</button>
-            <button type="button" data-digit="8" disabled>8</button>
-            <button type="button" data-digit="9" disabled>9</button>
-            <button type="button" data-digit="4" disabled>4</button>
-            <button type="button" data-digit="5" disabled>5</button>
-            <button type="button" data-digit="6" disabled>6</button>
-            <button type="button" data-digit="1" disabled>1</button>
-            <button type="button" data-digit="2" disabled>2</button>
-            <button type="button" data-digit="3" disabled>3</button>
-            <button type="button" class="delete-key" data-action="delete" disabled>けす</button>
-            <button type="button" data-digit="0" disabled>0</button>
+          <div class="answer-area">
+            <div class="answer-entry">
+              <label class="answer-label" for="answer">こたえ</label>
+              <input id="answer" type="text" inputmode="none" autocomplete="off" maxlength="2" readonly aria-describedby="feedback" />
+            </div>
+            <div id="number-pad" class="number-pad" aria-label="すうじの ボタン">
+              <button type="button" data-digit="7" disabled>7</button>
+              <button type="button" data-digit="8" disabled>8</button>
+              <button type="button" data-digit="9" disabled>9</button>
+              <button type="button" data-digit="4" disabled>4</button>
+              <button type="button" data-digit="5" disabled>5</button>
+              <button type="button" data-digit="6" disabled>6</button>
+              <button type="button" data-digit="1" disabled>1</button>
+              <button type="button" data-digit="2" disabled>2</button>
+              <button type="button" data-digit="3" disabled>3</button>
+              <button type="button" class="delete-key" data-action="delete" disabled>けす</button>
+              <button type="button" data-digit="0" disabled>0</button>
+            </div>
+            <button id="check-button" class="check-button" type="button" disabled>はんていする（N）</button>
           </div>
-          <button id="check-button" class="check-button" type="button" disabled>はんていする（N）</button>
           <p id="feedback" class="feedback" aria-live="assertive"></p>
           <button id="next-button" type="button" hidden>つぎの もんだい</button>
           <p id="time-result" class="time-result" aria-live="assertive"></p>

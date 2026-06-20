@@ -92,10 +92,14 @@ button:active { transform: translateY(3px); box-shadow: 0 1px 0 #bc562d; }
   .score { margin-bottom: 22px; }
   .score div { flex: 1; min-width: 0; }
   .settings { margin: 0; }
-  .problem-card { display: flex; flex-direction: column; justify-content: center; min-height: 460px; padding: 30px 42px; }
-  .problem { margin: 18px 0 30px; font-size: clamp(4.5rem, 9vw, 6.5rem); }
-  .number-pad { margin-top: 18px; }
-  .check-button { margin-top: 18px; }
+  .problem-card { display: flex; flex-direction: column; justify-content: center; min-height: 0; padding: 24px 42px; }
+  .problem { min-height: 0; margin: 12px 0 20px; font-size: clamp(4.5rem, 8vw, 6rem); }
+  .answer-area { display: grid; grid-template-columns: 120px 178px minmax(160px, 1fr); align-items: center; justify-content: center; gap: 16px; }
+  #answer { width: 120px; height: 72px; font-size: 3rem; }
+  .number-pad { grid-template-columns: repeat(3, 54px); margin: 0; }
+  .number-pad button { min-height: 42px; }
+  .check-button { width: 100%; margin: 0; }
+  .problem-card.result-shown .answer-area { grid-template-columns: 1fr; }
   .problem-card.result-shown { min-height: 0; }
   .feedback { margin-top: 16px; }
   .hint { margin: 16px 0 0; }
