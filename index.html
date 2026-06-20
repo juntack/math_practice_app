@@ -14,22 +14,45 @@
         <h1 id="app-title">けいさん れんしゅう</h1>
       </header>
 
-      <section class="score" aria-label="せいせき">
-        <div><span>せいかい</span><strong id="correct-count">0</strong></div>
-        <div><span>もんだい</span><strong id="question-count">0</strong></div>
-      </section>
+      <div class="dashboard">
+        <aside class="control-panel">
+          <section class="score" aria-label="せいせき">
+            <div><span>せいかい</span><strong id="correct-count">0</strong></div>
+            <div><span>こたえた もんだい</span><strong id="question-count">0</strong></div>
+          </section>
 
-      <section class="problem-card" aria-live="polite">
-        <p class="instruction">こたえを いれてね</p>
-        <p class="problem" id="problem" aria-label="もんだい"></p>
+          <section class="settings" aria-label="しゅつだいの せってい">
+            <fieldset>
+              <legend>もんだいの しゅるい</legend>
+              <div class="mode-options">
+                <label><input type="radio" name="mode" value="addition" /> たしざん</label>
+                <label><input type="radio" name="mode" value="subtraction" /> ひきざん</label>
+                <label><input type="radio" name="mode" value="mixed" checked /> どちらも</label>
+              </div>
+            </fieldset>
+            <div class="start-controls">
+              <label for="question-total">もんだいすう</label>
+              <input id="question-total" type="number" min="1" max="100" value="10" inputmode="numeric" />
+              <span>もん</span>
+              <button id="start-button" type="button">スタート</button>
+            </div>
+            <button id="reset-button" class="reset-button" type="button">せいせきを リセット</button>
+          </section>
+        </aside>
 
-        <label class="answer-label" for="answer">こたえ</label>
-        <input id="answer" inputmode="numeric" autocomplete="off" maxlength="1" aria-describedby="feedback" />
-        <p id="feedback" class="feedback" aria-live="assertive"></p>
-        <button id="next-button" type="button" hidden>つぎの もんだい</button>
-      </section>
+        <section class="problem-card" aria-live="polite">
+          <p class="instruction">こたえを いれてね</p>
+          <p class="problem" id="problem" aria-label="もんだい"></p>
 
-      <p class="hint">キーボードで すうじを ひとつ いれてね</p>
+          <label class="answer-label" for="answer">こたえ</label>
+          <input id="answer" inputmode="numeric" autocomplete="off" maxlength="1" aria-describedby="feedback" />
+          <p id="feedback" class="feedback" aria-live="assertive"></p>
+          <button id="next-button" type="button" hidden>つぎの もんだい</button>
+          <p id="time-result" class="time-result" aria-live="assertive"></p>
+        </section>
+      </div>
+
+      <p class="hint">もんだいすうを きめて、スタートを おしてね</p>
     </main>
     <script src="app.js"></script>
   </body>
