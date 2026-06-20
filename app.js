@@ -2,6 +2,7 @@ const problemElement = document.querySelector("#problem");
 const answerInput = document.querySelector("#answer");
 const feedbackElement = document.querySelector("#feedback");
 const nextButton = document.querySelector("#next-button");
+const checkButton = document.querySelector("#check-button");
 const resetButton = document.querySelector("#reset-button");
 const startButton = document.querySelector("#start-button");
 const correctCountElement = document.querySelector("#correct-count");
@@ -21,7 +22,6 @@ let startedAt = 0;
 let isTimingEnabled = true;
 let availableQuestions = [];
 let lastQuestionKey = null;
-let answerCheckTimer = null;
 
 function randomInt(max) {
   return Math.floor(Math.random() * (max + 1));
@@ -89,7 +89,6 @@ function makeQuestion() {
 }
 
 function showResult(isCorrect) {
-  clearTimeout(answerCheckTimer);
   answered = true;
   questionCount += 1;
   if (isCorrect) correctCount += 1;
@@ -99,6 +98,7 @@ function showResult(isCorrect) {
   correctCountElement.textContent = correctCount;
   questionCountElement.textContent = questionCount;
   answerInput.disabled = true;
+  checkButton.disabled = true;
 
   if (questionCount === targetQuestionCount) {
     finishPractice();
@@ -123,10 +123,10 @@ function finishPractice() {
 }
 
 function newQuestion() {
-  clearTimeout(answerCheckTimer);
   answered = false;
   answerInput.value = "";
   answerInput.disabled = false;
+  checkButton.disabled = true;
   feedbackElement.textContent = "";
   feedbackElement.className = "feedback";
   nextButton.hidden = true;
@@ -135,7 +135,6 @@ function newQuestion() {
 }
 
 function resetScore() {
-  clearTimeout(answerCheckTimer);
   correctCount = 0;
   questionCount = 0;
   answered = false;
@@ -144,6 +143,7 @@ function resetScore() {
   questionCountElement.textContent = questionCount;
   answerInput.value = "";
   answerInput.disabled = true;
+  checkButton.disabled = true;
   feedbackElement.textContent = "";
   feedbackElement.className = "feedback";
   nextButton.hidden = true;
@@ -177,17 +177,12 @@ function startPractice() {
 
 answerInput.addEventListener("input", () => {
   answerInput.value = answerInput.value.replace(/[^0-9]/g, "");
-  clearTimeout(answerCheckTimer);
-  if (!isRunning || answered || answerInput.value.length === 0) return;
+  checkButton.disabled = !isRunning || answered || answerInput.value.length === 0;
+});
 
-  if (answerInput.value.length === 2) {
+checkButton.addEventListener("click", () => {
+  if (isRunning && !answered && answerInput.value.length > 0) {
     showResult(Number(answerInput.value) === answer);
-  } else {
-    answerCheckTimer = setTimeout(() => {
-      if (isRunning && !answered && answerInput.value.length === 1) {
-        showResult(Number(answerInput.value) === answer);
-      }
-    }, 450);
   }
 });
 
@@ -200,6 +195,16 @@ modeInputs.forEach((input) => input.addEventListener("change", () => {
 startButton.addEventListener("click", startPractice);
 resetButton.addEventListener("click", resetScore);
 document.addEventListener("keydown", (event) => {
+  if (event.key.toLowerCase() === "n" && isRunning) {
+    event.preventDefault();
+    if (answered) {
+      newQuestion();
+    } else if (!checkButton.disabled) {
+      checkButton.click();
+    }
+    return;
+  }
+
   if (event.key === "Enter" && isRunning && answered) newQuestion();
 });
 

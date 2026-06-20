@@ -64,6 +64,9 @@ legend { padding: 0 6px; font-weight: 700; }
 }
 #answer:focus { border-color: #e77745; box-shadow: 0 0 0 4px #ffe2c6; }
 #answer:disabled { background: #f6f8fa; }
+.check-button { display: block; margin: 14px auto 0; background: #2eae88; box-shadow: 0 4px 0 #208064; }
+.check-button:active { box-shadow: 0 1px 0 #208064; }
+.check-button:disabled { cursor: default; opacity: .5; box-shadow: none; }
 
 .feedback { height: 76px; margin: 14px 0 0; font-size: 4.5rem; line-height: 1; font-weight: 800; }
 .feedback.correct { color: #2eae88; }
@@ -84,6 +87,7 @@ button:active { transform: translateY(3px); box-shadow: 0 1px 0 #bc562d; }
   .settings { margin: 0; }
   .problem-card { display: flex; flex-direction: column; justify-content: center; min-height: 460px; padding: 30px 42px; }
   .problem { margin: 18px 0 30px; font-size: clamp(4.5rem, 9vw, 6.5rem); }
+  .check-button { display: inline-block; margin: 18px 0 0 14px; vertical-align: top; }
   .feedback { margin-top: 16px; }
   .hint { margin: 16px 0 0; }
 }

@@ -47,13 +47,14 @@
 
           <label class="answer-label" for="answer">こたえ</label>
           <input id="answer" inputmode="numeric" autocomplete="off" maxlength="2" aria-describedby="feedback" />
+          <button id="check-button" class="check-button" type="button" disabled>はんていする（N）</button>
           <p id="feedback" class="feedback" aria-live="assertive"></p>
           <button id="next-button" type="button" hidden>つぎの もんだい</button>
           <p id="time-result" class="time-result" aria-live="assertive"></p>
         </section>
       </div>
 
-      <p class="hint">もんだいすうを きめて、スタートを おしてね</p>
+      <p class="hint">こたえを いれたら N キーで はんてい。もういちど N キーで つぎの もんだい</p>
     </main>
     <script src="app.js"></script>
   </body>
