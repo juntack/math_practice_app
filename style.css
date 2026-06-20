@@ -40,6 +40,8 @@ legend { padding: 0 6px; font-weight: 700; }
 #question-total:focus { outline: 3px solid #ffe2c6; border-color: #e77745; }
 .start-controls button { padding: 9px 15px; font-size: 1rem; }
 .start-controls button:disabled { cursor: default; opacity: .55; }
+.timer-option { display: inline-block; margin: 0 0 12px; cursor: pointer; font-weight: 700; }
+.timer-option input { accent-color: #e77745; }
 .reset-button { padding: 9px 15px; background: #637087; box-shadow: 0 3px 0 #485268; font-size: .9rem; }
 .reset-button:active { box-shadow: 0 1px 0 #485268; }
 
@@ -49,7 +51,7 @@ legend { padding: 0 6px; font-weight: 700; }
 .answer-label { display: block; font-weight: 700; margin-bottom: 8px; }
 
 #answer {
-  width: 104px;
+  width: 128px;
   height: 86px;
   text-align: center;
   font: inherit;

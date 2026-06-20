@@ -36,6 +36,7 @@
               <span>もん</span>
               <button id="start-button" type="button">スタート</button>
             </div>
+            <label class="timer-option"><input id="timer-enabled" type="checkbox" checked /> じかんを はかる</label>
             <button id="reset-button" class="reset-button" type="button">せいせきを リセット</button>
           </section>
         </aside>
@@ -45,7 +46,7 @@
           <p class="problem" id="problem" aria-label="もんだい"></p>
 
           <label class="answer-label" for="answer">こたえ</label>
-          <input id="answer" inputmode="numeric" autocomplete="off" maxlength="1" aria-describedby="feedback" />
+          <input id="answer" inputmode="numeric" autocomplete="off" maxlength="2" aria-describedby="feedback" />
           <p id="feedback" class="feedback" aria-live="assertive"></p>
           <button id="next-button" type="button" hidden>つぎの もんだい</button>
           <p id="time-result" class="time-result" aria-live="assertive"></p>
