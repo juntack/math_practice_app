@@ -6,6 +6,10 @@
 
 * { box-sizing: border-box; }
 
+html, body, button, input {
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
